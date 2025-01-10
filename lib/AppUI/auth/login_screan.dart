@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_one/AppUI/auth/signup_screan.dart';
+import 'package:firebase_one/AppUI/posts/post_screan.dart';
+import 'package:firebase_one/utils/utils.dart';
 import 'package:firebase_one/widgets/round_button.dart';
 import 'package:flutter/material.dart';
 
@@ -15,15 +17,26 @@ class _LoginScreanState extends State<LoginScrean> {
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  FirebaseAuth _auth = FirebaseAuth.instance;
 
   void dispose() {
     emailController.dispose();
     passwordController.dispose();
     super.dispose();
   }
-  FirebaseAuth _auth = FirebaseAuth.instance;
 
-
+  void login() {
+    _auth
+        .signInWithEmailAndPassword(
+            email: emailController.text,
+            password: passwordController.text.toString())
+        .then((value) {
+      Utils().toastMessage(value.user!.email.toString());
+      Navigator.push(context, MaterialPageRoute(builder: (conctext) => PostScrean()));
+    }).onError((error, stackTrace) {
+      Utils().toastMessage(error.toString());
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -98,7 +111,9 @@ class _LoginScreanState extends State<LoginScrean> {
               ),
             ),
             RoundButton(
-              onTap: () {},
+              onTap: () {
+                if (_formKey.currentState!.validate()) {}
+              },
               child: Text(
                 'Login',
                 style: TextStyle(color: Colors.white),
