@@ -53,12 +53,15 @@ class _LoginWithPhoneState extends State<LoginWithPhone> {
             child: RoundButton(
               onTap: () {
                 setState(() {
-                  loading = true;
+                  loading = false;
                 });
                 auth.verifyPhoneNumber(
                     phoneNumber: phoneNumberController.text,
                     verificationCompleted: (_) {},
                     verificationFailed: (e) {
+                      setState(() {
+                        loading = false;
+                      });
                       Utils().toastMessage(e.toString());
                     },
                     codeSent: (String verificationId, int? Token) {
@@ -67,9 +70,15 @@ class _LoginWithPhoneState extends State<LoginWithPhone> {
                           MaterialPageRoute(
                               builder: (context) => VerifyOtpCode(
                                   verificationId: verificationId)));
-                    },
+                      setState(() {
+                        loading = false;
+                      });
+                      },
                     codeAutoRetrievalTimeout: (e) {
                       Utils().toastMessage(e.toString());
+                      setState(() {
+                        loading = false;
+                      });
                     });
               },
               child: Text('Login'),
