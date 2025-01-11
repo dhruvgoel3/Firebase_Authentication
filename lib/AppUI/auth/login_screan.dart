@@ -17,6 +17,7 @@ class _LoginScreanState extends State<LoginScrean> {
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+
   FirebaseAuth _auth = FirebaseAuth.instance;
 
   void dispose() {
@@ -32,7 +33,8 @@ class _LoginScreanState extends State<LoginScrean> {
             password: passwordController.text.toString())
         .then((value) {
       Utils().toastMessage(value.user!.email.toString());
-      Navigator.push(context, MaterialPageRoute(builder: (conctext) => PostScrean()));
+      Navigator.push(
+          context, MaterialPageRoute(builder: (conctext) => PostScrean()));
     }).onError((error, stackTrace) {
       Utils().toastMessage(error.toString());
     });
@@ -112,7 +114,9 @@ class _LoginScreanState extends State<LoginScrean> {
             ),
             RoundButton(
               onTap: () {
-                if (_formKey.currentState!.validate()) {}
+                if (_formKey.currentState!.validate()) {
+                  login();
+                }
               },
               child: Text(
                 'Login',
