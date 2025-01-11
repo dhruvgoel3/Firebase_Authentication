@@ -37,12 +37,19 @@ class _PostScreanState extends State<PostScrean> {
           ]),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text('Post Screan'),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.only(bottom: 40.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Image.asset("assets/istockphoto-1281150061-612x612.jpg",height: 300,width: 400,),
+              SizedBox(height: 40,),
+              Text('Huhh ! Finally ho gaya.....',style: TextStyle(fontSize: 19,fontWeight: FontWeight.w600,color: Colors.indigoAccent),),
+              Text("Authentication karna itna bhi mushkil nahi",style: TextStyle(fontSize: 17,fontWeight: FontWeight.w600,color: Colors.indigoAccent),),
+              Text("Ab aa hi gaye ho to kuch naya seekh kar jaoo",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w600,color: Colors.indigoAccent),)
+            ],
+          ),
         ),
       ),
     );
