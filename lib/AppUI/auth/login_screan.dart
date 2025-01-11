@@ -138,8 +138,24 @@ class _LoginScreanState extends State<LoginScrean> {
                             builder: (context) => SignupScrean()));
                   },
                   child: Text('Sign Up'),
-                )
+                ),
               ],
+            ),
+            InkWell(
+              onTap: (){
+                
+              },
+              child: Container(
+                height: 50,
+                child: Center(child: Text('Login with Phone')),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    border: Border.all(
+                        color: Colors.black,
+              
+                    )
+                ),
+              ),
             )
           ],
         ),
