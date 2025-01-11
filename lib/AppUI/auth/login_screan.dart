@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_one/AppUI/auth/login_with_phone.dart';
 import 'package:firebase_one/AppUI/auth/signup_screan.dart';
 import 'package:firebase_one/AppUI/posts/post_screan.dart';
 import 'package:firebase_one/utils/utils.dart';
@@ -142,8 +143,9 @@ class _LoginScreanState extends State<LoginScrean> {
               ],
             ),
             InkWell(
-              onTap: (){
-                
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => LoginWithPhone()));
               },
               child: Container(
                 height: 50,
@@ -151,10 +153,8 @@ class _LoginScreanState extends State<LoginScrean> {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),
                     border: Border.all(
-                        color: Colors.black,
-              
-                    )
-                ),
+                      color: Colors.black,
+                    )),
               ),
             )
           ],
