@@ -1,16 +1,20 @@
-# firebase_one
 
-A new Flutter project.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+# ~Firebase Authentication with Email and Mobile Number
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## -This repository demonstrates a seamless implementation of user authentication using Firebase. It supports two robust methods:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+1.Email Authentication: Allow users to securely register and log in with their email and password.
+
+2.Mobile Number Authentication: Provide a simple and intuitive way to authenticate users via their mobile number using OTP verification.
+<br/>
+
+<img src = "https://github.com/user-attachments/assets/ab406ceb-e30c-48cc-a18b-4a58234184e2" height="500" width="220"/> 
+<img src = "https://github.com/user-attachments/assets/2236f1a9-be38-4182-910b-d27b4705c2d9" height="500" width="220"/> 
+<img src = "https://github.com/user-attachments/assets/596d3b9f-ae21-4412-aa2f-6a05de287bd0" height="500" width="220"/> 
+<img src = "https://github.com/user-attachments/assets/aad9652e-f05e-4502-bd79-347d0c38b7f8" height="500" width="220"/> 
+
+
