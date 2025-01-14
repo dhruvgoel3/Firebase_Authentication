@@ -20,7 +20,7 @@ class _PostScreanState extends State<PostScrean> {
           automaticallyImplyLeading: false,
           title: Center(
               child: Text(
-            '~ Aa gaye authentication karke',
+            '~ Crud operations Firestore',
             style: TextStyle(color: Colors.white,fontSize: 19),
           )),
           actions: [
