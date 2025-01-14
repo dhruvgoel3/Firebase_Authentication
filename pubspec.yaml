@@ -39,6 +39,8 @@ dependencies:
   firebase_auth: ^5.4.0
   fontstyles: ^1.0.0+1
   fluttertoast: ^8.2.10
+  google_sign_in: ^6.2.2
+  get: ^4.6.6
 dev_dependencies:
   flutter_test:
    sdk: flutter

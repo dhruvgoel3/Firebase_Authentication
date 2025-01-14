@@ -5,6 +5,11 @@ import 'package:firebase_one/AppUI/posts/post_screan.dart';
 import 'package:firebase_one/utils/utils.dart';
 import 'package:firebase_one/widgets/round_button.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+
+import '../../firebase_services/auth_service.dart';
 
 class LoginScrean extends StatefulWidget {
   const LoginScrean({super.key});
@@ -18,8 +23,24 @@ class _LoginScreanState extends State<LoginScrean> {
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final googleSignInDevices = GooglesignwithDevices();
 
   FirebaseAuth _auth = FirebaseAuth.instance;
+  //
+  // Future<UserCredential?> loginWithGoogle() async {
+  //   try {
+  //     final googleUser = await GoogleSignIn().signIn();
+  //     final googleAuth = await googleUser?.authentication;
+  //     final cred = GoogleAuthProvider.credential(
+  //       accessToken: googleAuth?.accessToken,
+  //       idToken: googleAuth?.idToken,
+  //     );
+  //     return await _auth.signInWithCredential(cred);
+  //   } catch (e) {
+  //     Utils().toastMessage(e.toString());
+  //   }
+  //   return null;
+  // }
 
   void dispose() {
     emailController.dispose();
@@ -35,7 +56,7 @@ class _LoginScreanState extends State<LoginScrean> {
         .then((value) {
       Utils().toastMessage(value.user!.email.toString());
       Navigator.push(
-          context, MaterialPageRoute(builder: (conctext) => PostScrean()));
+          context, MaterialPageRoute(builder: (context) => PostScrean()));
     }).onError((error, stackTrace) {
       Utils().toastMessage(error.toString());
     });
@@ -156,7 +177,27 @@ class _LoginScreanState extends State<LoginScrean> {
                       color: Colors.black,
                     )),
               ),
-            )
+            ),
+            SizedBox(height: 15),
+            ElevatedButton(
+                style: ElevatedButton.styleFrom(),
+                onPressed: () async {
+                  final User = await googleSignInDevices.signUpwithGmail();
+
+                  if (User != null) {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => PostScrean()));
+                    Get.snackbar(
+                      "",
+                      backgroundColor: Colors.lightBlue,
+                      titleText: Text("Sign in sucessfull"),
+                      'Signed in as ${User.displayName}',
+                    );
+                  } else {
+                    Get.snackbar('Error', 'SignIn is failed');
+                  }
+                },
+                child: Text("Sign Up with Gmail"))
           ],
         ),
       ),
