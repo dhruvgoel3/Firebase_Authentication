@@ -1,4 +1,5 @@
 import 'package:firebase_one/AppUI/splash_screan.dart';
+import 'package:firebase_one/Firestore/firestore_list_screan.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(),
-      home: SplashScrean(),
+      home: FirestoreListScrean(),
     );
   }
 }
