@@ -1,3 +1,4 @@
+import 'package:firebase_one/AppUI/auth/signup_screan.dart';
 import 'package:firebase_one/AppUI/splash_screan.dart';
 import 'package:firebase_one/Firestore/firestore_list_screan.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(),
-      home: FirestoreListScrean(),
+      home: SignupScrean(),
     );
   }
 }
