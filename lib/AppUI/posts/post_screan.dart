@@ -1,57 +1,87 @@
+import 'dart:convert';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_one/AppUI/auth/login_screan.dart';
+import 'package:firebase_one/AppUI/auth/signup_screan.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart' as http;
+import '../../Models/PostModel.dart';
 
-class PostScrean extends StatefulWidget {
-  const PostScrean({super.key});
+class PostScreen extends StatefulWidget {
+  const PostScreen({super.key});
 
   @override
-  State<PostScrean> createState() => _PostScreanState();
+  State<PostScreen> createState() => _PostScreenState();
 }
 
-class _PostScreanState extends State<PostScrean> {
-
+class _PostScreenState extends State<PostScreen> {
   final auth = FirebaseAuth.instance;
+  List<PostModel> postList = [];
+
+  Future<List<PostModel>> getPostApi() async {
+    final response =
+        await http.get(Uri.parse('https://jsonplaceholder.typicode.com/posts'));
+
+    if (response.statusCode == 200) {
+      var data = jsonDecode(response.body.toString());
+      for (var i in data) {
+        postList.add(PostModel.fromJson(i));
+      }
+      return postList;
+    } else {
+      return postList;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          backgroundColor: Colors.indigoAccent,
-          automaticallyImplyLeading: false,
-          title: Center(
-              child: Text(
-            '~ Crud operations Firestore ',
-            style: TextStyle(color: Colors.white,fontSize: 19),
-          )),
-          actions: [
-            IconButton(
-                onPressed: () {
-                  auth.signOut().then((value) {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginScrean()));
-                  });
-                },
-                icon: Icon(
-                  Icons.logout,
-                  color: Colors.black,
-                )),
-          ]),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-        child: Padding(
-          padding: const EdgeInsets.only(bottom: 40.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Image.asset("assets/istockphoto-1281150061-612x612.jpg",height: 300,width: 400,),
-              SizedBox(height: 40,),
-              Text('Huhh ! Finally ho gaya.....',style: TextStyle(fontSize: 19,fontWeight: FontWeight.w600,color: Colors.indigoAccent),),
-              Text("Authentication karna itna bhi mushkil nahi",style: TextStyle(fontSize: 17,fontWeight: FontWeight.w600,color: Colors.indigoAccent),),
-              Text("Ab aa hi gaye ho to kuch naya seekh kar jaoo",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w600,color: Colors.indigoAccent),)
-            ],
-          ),
-        ),
-      ),
-    );
+        appBar: AppBar(
+            backgroundColor: Colors.indigoAccent,
+            automaticallyImplyLeading: false,
+            title: Text(
+              "API fetching",
+              style: GoogleFonts.poppins(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 23,
+                  color: Colors.white),
+            ),
+            actions: [
+              IconButton(
+                  onPressed: () {
+                    auth.signOut().then((value) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SignupScrean()));
+                    });
+                  },
+                  icon: const Icon(
+                    Icons.logout,
+                    color: Colors.black,
+                  )),
+            ]),
+        body: Column(
+          children: [
+            Expanded(
+              child: FutureBuilder(
+                  future: getPostApi(),
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData) {
+                      return const Center(child: CircularProgressIndicator());
+                    } else {
+                      return ListView.builder(
+                        itemCount: postList.length,
+                        itemBuilder: (context, index) {
+                          return ListTile(
+                            title: Text(postList[index].title),
+                            subtitle: Text(postList[index].body),
+                          );
+                        },
+                      );
+                    }
+                  }),
+            )
+          ],
+        ));
   }
 }

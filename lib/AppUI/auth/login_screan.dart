@@ -56,7 +56,7 @@ class _LoginScreanState extends State<LoginScrean> {
         .then((value) {
       Utils().toastMessage(value.user!.email.toString());
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => PostScrean()));
+          context, MaterialPageRoute(builder: (context) => PostScreen()));
     }).onError((error, stackTrace) {
       Utils().toastMessage(error.toString());
     });
@@ -186,7 +186,7 @@ class _LoginScreanState extends State<LoginScrean> {
 
                   if (User != null) {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => PostScrean()));
+                        MaterialPageRoute(builder: (context) => PostScreen()));
                     Get.snackbar(
                       "",
                       backgroundColor: Colors.lightBlue,

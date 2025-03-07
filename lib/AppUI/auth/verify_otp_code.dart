@@ -61,7 +61,7 @@ class _VerifyOtpCodeState extends State<VerifyOtpCode> {
                 try {
                   await auth.signInWithCredential(authCredential);
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => PostScrean()));
+                      MaterialPageRoute(builder: (context) => PostScreen()));
                 } catch (e) {}
               },
               child: Text('Veryfy'),
