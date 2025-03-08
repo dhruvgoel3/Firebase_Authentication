@@ -1,7 +1,10 @@
 import 'dart:convert';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_one/AppUI/auth/signup_screan.dart';
+import 'package:firebase_one/AppUI/example_two.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import '../../Models/PostModel.dart';
@@ -62,6 +65,12 @@ class _PostScreenState extends State<PostScreen> {
             ]),
         body: Column(
           children: [
+            SizedBox(height: 10,),
+            ElevatedButton(
+                onPressed: () {
+                  Get.to(() => ExampleTwo());
+                },
+                child: Text("Go to example two",style: TextStyle(fontSize: 20),),style: ElevatedButton.styleFrom(backgroundColor: Colors.black,),),
             Expanded(
               child: FutureBuilder(
                   future: getPostApi(),
